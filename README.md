@@ -14,7 +14,7 @@ This project demonstrates a simple linear regression analysis using two approach
 import numpy as np
 import matplotlib.pyplot as plt
 
-**2.Generate Synthetic Dataset & Plot Raw Data**
+# 2.Generate Synthetic Dataset & Plot Raw Data
 np.random.seed(42)             # For reproducibility
 n_samples = 200                # Number of data points
 X = np.random.uniform(0, 5, n_samples)   # Random x values between 0 and 5
@@ -29,14 +29,14 @@ plt.ylabel("y")
 plt.legend()
 plt.show()
 
-**Closed-Form Solution (Normal Equation)**
+# Closed-Form Solution (Normal Equation)
 X_bias = np.c_[np.ones((n_samples, 1)), X]  # Add bias (intercept) column
 theta_normal = np.linalg.inv(X_bias.T @ X_bias) @ (X_bias.T @ y)
 b_normal, w_normal = theta_normal
 
 print(f"Closed-form coefficients -> Intercept: {b_normal:.4f}, Slope: {w_normal:.4f}")
 
-**Plot Closed-Form Fitted Line**
+# Plot Closed-Form Fitted Line
 plt.scatter(X, y, color="royalblue", s=20, label="Data")
 plt.plot(X, X_bias @ theta_normal, color="crimson", lw=2, label="Normal Equation fit")
 plt.xlabel("X")
@@ -45,7 +45,7 @@ plt.title("Fit via Closed-Form Solution")
 plt.legend()
 plt.show()
 
-**Gradient Descent Implementation**
+# Gradient Descent Implementation
 theta = np.zeros(2)       # Start with zeros
 lr = 0.05                 # Learning rate
 epochs = 1000             # Number of iterations
@@ -61,14 +61,14 @@ for _ in range(epochs):
 b_gd, w_gd = theta
 print(f"Gradient Descent coefficients -> Intercept: {b_gd:.4f}, Slope: {w_gd:.4f}")
 
-**Plot Loss Curve**
+# Plot Loss Curve
 plt.plot(range(epochs), loss_values, color="seagreen")
 plt.title("Gradient Descent: MSE vs Iterations")
 plt.xlabel("Iteration")
 plt.ylabel("Mean Squared Error")
 plt.show()
 
-**Comparison Plot**
+# Comparison Plot
 plt.scatter(X, y, color="royalblue", s=20, label="Data")
 plt.plot(X, X_bias @ theta_normal, color="crimson", lw=2, label="Normal Equation fit")
 plt.plot(X, X_bias @ theta, color="orange", lw=2, ls="--", label="Gradient Descent fit")
@@ -78,7 +78,7 @@ plt.title("Closed-Form vs Gradient Descent")
 plt.legend()
 plt.show()
 
-**Short Explanation**
+#  Short Explanation
 print("\nSummary:")
 print(f"Normal Equation -> Intercept: {b_normal:.2f}, Slope: {w_normal:.2f}")
 print(f"Gradient Descent -> Intercept: {b_gd:.2f}, Slope: {w_gd:.2f}")
